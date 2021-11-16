@@ -1,8 +1,21 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 export default class SignUpController {
   public async index({ request }: HttpContextContract) {
-    return request.all
+    const req = await request.validate({
+      schema: schema.create({
+        name: schema.string(),
+        email: schema.string({}, [rules.email()]),
+        username: schema.string({}),
+        password: schema.string({}),
+      }),
+      messages: {
+        "name.required": "Name is required to sign up",
+        "email.required": "Email is required to sign up",
+        "username.required": "Username is required to sign up",
+        "password.required": "Password is required to sign up",
+      },
+    });
   }
 
   public async create({ }: HttpContextContract) { }
