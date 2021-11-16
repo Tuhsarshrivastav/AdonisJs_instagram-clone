@@ -11,31 +11,31 @@
         <form action="/signup" method="POST">
     <div>
      <label for="name"></label>
-        <input type="text" name="name" id="name">
+        <input placeholder="Enter Your Name" type="text" name="name" id="name">
          </div>
          @if(flashMessages.has('errors.name'))
          <small>{{flashMessages.get('errors.name')}}</small>
          @endif
         <div>
         <label for="email"></label>
-        <input type="email" name="email" id="email">
+        <input placeholder="Enter Your Email" type="email" name="email" id="email">
         @if(flashMessages.has('errors.email'))
         <small>{{flashMessages.get('errors.email')}}</small>
         @endif
         </div>
         <div>
         <label for="password"></label>
-        <input type="password" name="password" id="passsword">
+        <input placeholder="Enter Your Password" type="password" name="password" id="passsword">
         @if(flashMessages.has('errors.password'))
         <small>{{flashMessages.get('errors.password')}}</small>
         @endif
         </div>
         <div>
         <label for="password_confirmation"></label>
-        <input type="password" name="password_confirmation" id="password_confirmation">
+        <input placeholder="Enter Your CPassword" type="password" name="password_confirmation" id="password_confirmation">
         </div>
         <div>
-        <input type="submit" value="sing up">
+        <input type="submit" value="singup">
         </div>
         </form>
     </section>
