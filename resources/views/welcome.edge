@@ -3,33 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdonisJS - A fully featured web framework for Node.js</title>
-  @entryPointStyles('app')
-  @entryPointScripts('app')
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    instgaram-clone
+  </title>
 </head>
 <body>
 
-  <main>
-    <div>
-      <h1 class="title"> It Works! </h1>
-      <p class="subtitle">
-        Congratulations, you have just created your first AdonisJS app.
-      </p>
-
-      <ul>
-        <li>
-          The route for this page is defined inside <code>start/routes.ts</code> file
-        </li>
-
-        <li>
-          You can update this page by editing <code>resources/views/welcome.edge</code> file
-        </li>
-
-        <li>
-          If you run into problems, you can reach us on <a href="https://discord.gg/vDcEjq6?">Discord</a> or the <a href="https://forum.adonisjs.com/">Forum</a>.
-        </li>
-      </ul>
-    </div>
-  </main>
+@if(auth.isAuthenticated)
+<h1>{{auth.user.name}}</h1>
+<form action="/logout" method="POST">
+<button type="submit">Sign Out
+  </button></form>
+  @else
+  <a href="/login">Login</a>
+  @endif
 </body>
 </html>
