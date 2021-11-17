@@ -1,8 +1,9 @@
+import Env from '@ioc:Adonis/Core/Env';
 import { DateTime } from 'luxon'
 import { BaseModel, column, beforeSave } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Mail from '@ioc:Adonis/Addons/Mail'
-
+import {nanoid} from 'nanoid'
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
@@ -30,8 +31,10 @@ export default class User extends BaseModel {
   }
 
   public async sendVerificationEmail() {
+    const token = nanoid()
+    const url = `${Env.get('APP_URL')}/confirm-email/${this.id}/${token}`
     Mail.send((message) => {
-      message.from('verify@adonis.com').to(this.email).subject('Please verify your email').htmlView('emails/verify', { user: this })
+      message.from('verify@adonis.com').to(this.email).subject('Please verify your email').htmlView('emails/verify', { user: this, url })
     })
   }
 

@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>
-    instgaram-clone
-  </title>
-</head>
-<body>
+@layout('layouts/app')
 
-@if(auth.isAuthenticated)
-<h1>{{auth.user.name}}</h1>
-<form action="/logout" method="POST">
-<button type="submit">Sign Out
-  </button></form>
-  @else
-  <a href="/login">Login</a>
-  @endif
-</body>
-</html>
+@section('content')
+<div>
+
+    @each(post in posts)
+    <div class="border-2 bg-white w-9/12 my-6">
+        <div class="m-2 flex justify-between">
+            <div class="flex">
+                <img src="{{post.user.avatar}}" class="h-10 w-10 rounded-full border" alt="profile">
+                <a href="/{{post.user.username}}" class="mx-3 mt-2 font-semibold">{{post.user.username}}</a>
+            </div>
+            <div>
+                <p class="font-semibold mx-3 tracking-wider">...</p>
+            </div>
+        </div>
+        <img src="{{post.image}}" width="100%" alt="">
+        <div class="p-4">
+            <div class="flex">
+                <p class="mx-3"> <a href="/{{post.user.username}}" class="font-semibold mr-3">{{post.user.username}}</a>{{post.caption}}</p>
+            </div>
+            <p class="text-gray-500 text-xs my-5">{{post.createdAt.toFormat('DD')}}</p>
+        </div>
+    </div>
+    @endeach
+</div>
+@endsection

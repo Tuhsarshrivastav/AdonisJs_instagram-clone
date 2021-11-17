@@ -4,12 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Adonisjs-Instagram-clone</title>
+    <title>AdonsiJS Crash Course</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
 </head>
 <body>
-    @section('content')
+    <nav class="w-full bg-white shadow-md border flex justify-center px-4 py-2">
+        <div class="w-1/2 flex justify-between">
+            <h1 class="text-xl font-semibold">
+                <a href="/">Adonisgram</a>
+            </h1>
+            @if(auth.isAuthenticated && auth.user.email_verified_at === null)
+            <form action="/verify-email" method="post">
+                <input type="submit" value="Resend" class="px-2 py-1 rounded border">
+            </form>
+            @endif
+            <div>
+                @if(auth.isAuthenticated)
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                    <div class="relative inline-block text-left">
+                        <div id="dropdown" class="cursor-pointer outline-none focus-none">
+                            <img src="{{auth.user.avatar}}" class="h-8 w-8 rounded-full border" alt="profile">
+                        </div>
+                        <div id="dropdown-items" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            <a href="/{{auth.user.username}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b border-t" role="menuitem">Profile</a>
+                            <form action="/logout" method="post">
+                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
+                                Sign out
+                            </button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+            @endif
+            </div>
+        </div>
+    </nav>
+    <div class="bg-gray-100 min-h-screen flex justify-center">
+        <div class="w-full md:w-1/2">
+            @section('content')
+            @endsection
+        </div>
+    </div>
+    <script>
+        const dropdown = document.getElementById('dropdown')
+        const item = document.getElementById('dropdown-items')
+        dropdown.addEventListener('click',()=>{
+            if(item.classList.contains('hidden')){
+                item.classList.remove('hidden')
+            }else{
+                item.classList.add('hidden')
+            }
+        })
 
-    @endsection
+    </script>
 </body>
 </html>

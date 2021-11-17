@@ -6,21 +6,9 @@
  */
 
 import Env from '@ioc:Adonis/Core/Env'
-import Application from '@ioc:Adonis/Core/Application'
 import { SessionConfig } from '@ioc:Adonis/Addons/Session'
 
 const sessionConfig: SessionConfig = {
-  /*
-  |--------------------------------------------------------------------------
-  | Enable/Disable sessions
-  |--------------------------------------------------------------------------
-  |
-  | Setting the following property to "false" will disable the session for the
-  | entire application
-  |
-  */
-  enabled: true,
-
   /*
   |--------------------------------------------------------------------------
   | Driver
@@ -100,7 +88,7 @@ const sessionConfig: SessionConfig = {
   |
   */
   file: {
-    location: Application.tmpPath('sessions'),
+    location: '',
   },
 
   /*

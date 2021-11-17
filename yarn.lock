@@ -5334,7 +5334,7 @@ mysql@^2.18.1:
 
 nanoid@^3.1.30:
   version "3.1.30"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.1.30.tgz"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
   integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
 
 nanomatch@^1.2.9:
